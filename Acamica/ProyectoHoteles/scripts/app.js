@@ -58,9 +58,19 @@ class App extends React.Component {
     data = filteredList
     filteredList = []
     if(this.state.filters.rooms!=0){
-      { data.map((hotel)=> {if( hotel.rooms >= this.state.filters.rooms){
-        filteredList.push(hotel)} })}
-    }else{filteredList = data}
+      { data.map((hotel)=> {
+        if (this.state.filters.rooms == 30){
+          if(hotel.rooms > this.state.filters.rooms - 10){
+            filteredList.push(hotel)}
+
+        }else{
+          if(hotel.rooms >= this.state.filters.rooms - 10 && hotel.rooms <= this.state.filters.rooms){
+            filteredList.push(hotel)}
+        }
+         })}
+    }else{
+      filteredList = data
+    }
 
     
     this.state.filters.cantResultados = filteredList.length;
@@ -81,18 +91,38 @@ class App extends React.Component {
 
 class Hero extends React.Component {
   render() {
+    let dateFromT = this.props.filters.dateFrom.toLocaleDateString()
+    let dateToT = this.props.filters.dateTo.toLocaleDateString()
+
+    let countryT = ""
+    if (this.props.filters.country != 0 ) {
+      countryT="en "+this.props.filters.country
+    }
+
+    let priceT = ''
+    if (this.props.filters.price != 0){
+      [[1,"$"],[2,"$$"],[3,"$"],[4,"$$$$"]].map(num => {
+        if(this.props.filters.price == num[0]){ priceT = "por  " + num[1].toString()} 
+      })
+    }
+    let roomsT= ''
+    if (this.props.filters.rooms != 0){
+      if (this.props.filters.rooms == 30){
+        roomsT = "con mas de " + (this.props.filters.rooms -10).toString() + " habitaciones"
+      }else{
+        roomsT = "de hasta  " + this.props.filters.rooms.toString() + " habitaciones"
+      }
+    }
+    
+
     return (
       <section className="hero is-primary">
         <div className="hero-body">
           <div className="container">
             <h1 className="title">Hoteles</h1>
             <h2 className="subtitle">
-              desde el <strong>{this.props.filters.dateFrom.toLocaleDateString()}</strong> hasta el <strong>{this.props.filters.dateTo.toLocaleDateString()}</strong>
-              <br/>
-              {this.props.filters.country != 0 ? (<div> <strong>Pais:</strong> {this.props.filters.country} <br/> </div>):""}
-              {this.props.filters.price != 0 ? (<div><strong>Precio:</strong>  {this.props.filters.price} <br/> </div>):""}
-              {this.props.filters.rooms != 0 ? (<div><strong>Habitaciones:</strong> {this.props.filters.rooms} <br/> </div>):""}
-              {this.props.filters.cantResultados != 0 ? (<div><strong>cantResultados:</strong> {this.props.filters.cantResultados} <br/> </div>):""}
+              desde el <strong>{dateFromT}</strong> hasta el <strong>{dateToT}</strong> {countryT} {priceT} {roomsT}
+              {/* {this.props.filters.cantResultados != 0 ? (<div><strong>cantResultados:</strong> {this.props.filters.cantResultados} <br/> </div>):""} */}
             </h2>
           </div>
         </div>
@@ -110,7 +140,7 @@ class DateFilter extends React.Component {
   }
 
   handleDateChange(event) {
-    this.props.onDateChange(event)
+    this.props.onDateChange(event)   
   }
 
   dateConversion(dateToConvert){
@@ -142,7 +172,6 @@ class DateFilter extends React.Component {
 class OptionsFilter extends React.Component {
   constructor(params) {
     super(params)
-    
     this.handleOptionChange = this.handleOptionChange.bind(this)
   }
 
@@ -189,11 +218,12 @@ class Filters extends React.Component {
   }
 
   handleDataChange(event) {
-
-    let dataType = this.dateConvert(event.target.value)
-    let payload = this.props.filters
-    payload[event.target.name] = dataType
-    this.props.onFilterChange(payload)
+    if(event.target.value.length >= 8){
+      let dataType = this.dateConvert(event.target.value)
+      let payload = this.props.filters
+      payload[event.target.name] = dataType
+      this.props.onFilterChange(payload)
+    }
   }
 
   handleOptionChange(event){    
@@ -260,7 +290,7 @@ class Hotel extends React.Component {
   render() {
       let priceSimbolOk= [<i key={1} className="fas fa-dollar-sign" style={{margin: '0 .125em', opacity: '1'}}></i>]
       let PriceSimbolNotOk= [<i key={1} className="fas fa-dollar-sign" style={{margin: '0 .125em', opacity: '.25'}}></i>]
-      //debugger;
+
       return (
         <div className="card">
           <div className="card-image">
@@ -300,7 +330,7 @@ class Hotel extends React.Component {
             <button onClick={() => alert("Funcion no disponible")} className="card-footer-item has-background-primary has-text-white has-text-weight-bold">Reservar</button>
           </div>
         </div>
-      );
+      );jh  
     
 
   }
