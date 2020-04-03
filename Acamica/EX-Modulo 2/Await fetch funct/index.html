@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Await</title>
+</head>
+<body>
+    <script type="text/javascript">
+        const request = async () => {
+            const response = await fetch('https://api.themoviedb.org/3/movie/upcoming?api_key=5aee7fa2bc840cbc9031bdeb442321c4&language=en-US&page=1');
+            const json = await response.json();
+
+            console.log(json);
+        }
+
+        request();
+    </script>
+</body>
+</html>
