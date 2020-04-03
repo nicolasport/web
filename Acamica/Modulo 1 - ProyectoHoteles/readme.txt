@@ -1,1 +1,1 @@
-![](https://github.com/nicolasport/web/blob/master/Acamica/Modulo%201%20-%20ProyectoHoteles/Captura.PNG)
+![show](https://github.com/nicolasport/web/blob/master/Acamica/Modulo%201%20-%20ProyectoHoteles/Captura.PNG)
