@@ -1,12 +1,24 @@
-import React from 'react';
+import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
 import * as serviceWorker from './serviceWorker';
+import './index.css';
+import SideMenu from "./SideMenu";
+import News from "./News";
+import styled from "styled-components";
+
+
+const Container = styled.div`
+      display: flex;  
+      flex-flow: row wrap;
+      font-weight: bold;
+      height: 100vh;      
+    `;
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App/>
-  </React.StrictMode>,
+    <Container>
+        <SideMenu/>
+        <News/>
+    </Container>,
   document.getElementById('root')
 );
 
