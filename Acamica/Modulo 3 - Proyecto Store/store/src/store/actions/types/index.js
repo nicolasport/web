@@ -1,0 +1,9 @@
+//Product
+export const GET_PRODUCTS = 'GET_PRODUCTS';
+export const CLEAR_PRODUCTS = 'CLEAR_PRODUCTS';
+export const REDEEM_PRODUCT = 'REDEEM_PRODUCT';
+export const GET_CATEGORIES = 'GET_CATEGORIES';
+//User
+export const GET_USER_INFO = 'GET_USER_INFO';
+export const ADD_USER_COINS = 'ADD_USER_COINS';
+export const GET_REDEEM_HISTORY = 'GET_REDEEM_HISTORY';

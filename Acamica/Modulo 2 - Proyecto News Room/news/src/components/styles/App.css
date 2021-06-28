@@ -1,0 +1,75 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #E7E7E7;
+  color: black;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  /*background-image: url(./cIByWP.jpg)*/
+
+}
+
+.newsContainer{
+  overflow: scroll;
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(3, 31.8%);
+  overflow: auto;
+  margin-top: 20px;
+
+}
+@media (max-width: 1422px) {
+    grid-template-columns: repeat(2, 1fr);
+}
+@media (max-width: 1071px) {
+    grid-template-columns: repeat(1, 1fr);
+}
+  aside{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    box-shadow: 1px 0px 11px -3px #090671d6;
+    height: 100vh;
+  }
+    aside ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-content: center;
+      text-align: center;
+    }
+    aside li div {
+      padding: 20px;
+    }
+    aside li a {
+      display: block;
+      color: rgb(255, 255, 255);
+      padding: 8px 16px;
+      text-decoration: none;
+    }
+    aside ul li span { 
+      color:white;
+      font-size: 20px;
+    }
+    /* Change the link color on hover */
+    aside li div:hover {
+      color: white;
+      /*box-shadow: 1px 1px 1px 1px black;*/
+    }
+
+
+
+
+
+
+
